@@ -1167,6 +1167,10 @@ class BigDecimal private constructor(
         return BigDecimal(significand.negate(), exponent)
     }
 
+    override fun clearBackingArray() {
+        significand.clearBackingArray()
+    }
+
     /**
      * Incerement by one
      */

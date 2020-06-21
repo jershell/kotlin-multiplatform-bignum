@@ -272,6 +272,11 @@ class ModularBigInteger @ExperimentalUnsignedTypes private constructor(
         return negate()
     }
 
+    override fun clearBackingArray() {
+        modulus.clearBackingArray()
+        residue.clearBackingArray()
+    }
+
     override fun rem(other: ModularBigInteger): ModularBigInteger {
         return remainder(other)
     }

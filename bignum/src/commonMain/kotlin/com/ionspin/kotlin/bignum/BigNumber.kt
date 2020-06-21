@@ -136,6 +136,11 @@ interface BigNumber<BigType> where BigType : BigNumber<BigType> {
     fun toString(base: Int): String
 
     operator fun unaryMinus(): BigType
+
+    /**
+     * Overwrite the backing array with zeroes
+     */
+    fun clearBackingArray()
 }
 
 internal interface NarrowingOperations<BigType> where BigType : BigNumber<BigType> {
