@@ -43,7 +43,7 @@ repositories {
     jcenter()
 }
 group = "com.ionspin.kotlin"
-version = "0.1.6-1.4-M2-2-SNAPSHOT"
+version = "0.1.6.1-1.3.72-SNAPSHOT"
 
 val ideaActive = System.getProperty("idea.active") == "true"
 
@@ -142,21 +142,14 @@ kotlin {
         }
     }
 
-    tvos() {
-        binaries {
-            framework {
-            }
-        }
-    }
-
-    watchos() {
-        binaries {
-            framework {
-            }
-        }
-    }
-
     mingwX64() {
+        binaries {
+            staticLib {
+            }
+        }
+    }
+
+    mingwX86() {
         binaries {
             staticLib {
             }
@@ -195,6 +188,7 @@ kotlin {
             val nativeTest by getting {
                 dependsOn(commonTest)
                 dependencies {
+                    implementation(Deps.Native.coroutines)
                 }
             }
             nativeTest
@@ -202,6 +196,7 @@ kotlin {
             val nativeTest by creating {
                 dependsOn(commonTest)
                 dependencies {
+                    implementation(Deps.Native.coroutines)
                 }
             }
             nativeTest
@@ -219,16 +214,19 @@ kotlin {
                     implementation(kotlin(Deps.Jvm.testJUnit))
                     implementation(Deps.Jvm.coroutinesTest)
                     implementation(kotlin(Deps.Jvm.reflection))
+                    implementation(Deps.Jvm.coroutinesCore)
                 }
             }
             val jsMain by getting {
                 dependencies {
                     implementation(kotlin(Deps.Js.stdLib))
+                    implementation(Deps.Js.coroutines)
                 }
             }
             val jsTest by getting {
                 dependencies {
                     implementation(kotlin(Deps.Js.test))
+                    implementation(Deps.Js.coroutines)
                 }
             }
 
@@ -284,16 +282,11 @@ kotlin {
             dependsOn(nativeTest)
         }
 
-        val tvosMain by getting {
+        val mingwX86Main by getting {
             dependsOn(nativeMain)
         }
-        val tvosTest by getting {
-            dependsOn(nativeTest)
-        }
-        val watchosMain by getting {
-            dependsOn(nativeMain)
-        }
-        val watchosTest by getting {
+
+        val mingwX86Test by getting {
             dependsOn(nativeTest)
         }
 
