@@ -43,7 +43,7 @@ repositories {
     jcenter()
 }
 group = "com.ionspin.kotlin"
-version = "0.1.6.1-1.3.72-SNAPSHOT"
+version = "kotlin-1.3.72"
 
 val ideaActive = System.getProperty("idea.active") == "true"
 
